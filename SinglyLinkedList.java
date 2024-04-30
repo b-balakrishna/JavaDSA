@@ -1,3 +1,4 @@
+
 public class SinglyLinkedList {
 
     public static class Node {
@@ -22,6 +23,12 @@ public class SinglyLinkedList {
 
     public int length() {
         return this.length;
+    }
+
+    public void makeEmpty() {
+        head = null;
+        tail = null;
+        length = 0;
     }
 
     public int getHead() {
@@ -174,4 +181,76 @@ public class SinglyLinkedList {
             temp = after;
         }
     }
+
+    public boolean hasLoop() {
+        Node slow = this.head;
+        Node fast = this.head;
+        while (fast.next != null && fast.next.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void partitionList(int x) {
+        if (this.head == null) {
+            return;
+        }
+
+        Node lowerHead = null;
+        Node lowerTail = null;
+        Node greaterHead = null;
+        Node greaterTail = null;
+        Node current = this.head;
+
+        while (current != null) {
+            Node next = current.next;
+            current.next = null;
+
+            if (current.value < x) {
+                if (lowerHead == null) {
+                    lowerHead = current;
+                    lowerTail = current;
+                } else {
+                    lowerTail.next = current;
+                    lowerTail = current;
+                }
+            } else {
+                if (greaterHead == null) {
+                    greaterHead = current;
+                    greaterTail = current;
+                } else {
+                    greaterTail.next = current;
+                    greaterTail = current;
+                }
+            }
+            current = next;
+        }
+
+        if (lowerHead != null) {
+            this.head = lowerHead;
+            lowerTail.next = greaterHead;
+        } else {
+            this.head = greaterHead;
+        }
+    }
+
+    public int binaryToDecimal() {
+        if (this.head == null) {
+            return 0;
+        }
+        int decimal = 0;
+        int exponent = this.length - 1;
+        Node temp = this.head;
+        while (temp != null) {
+            decimal += temp.value * Math.pow(2, exponent);
+            temp = temp.next;
+            exponent--;
+        }
+        return decimal;
+    }
+
 }
