@@ -81,6 +81,24 @@ public class DoublyLinkedList {
         return remNode;
     }
 
+    public Node get(int index) {
+        if (index >= this.length || index < 0) {
+            return null;
+        }
+        Node temp = this.head;
+        if (index < this.length / 2) {
+            for (int i = 0; i < index; i++) {
+                temp = temp.next;
+            }
+        } else {
+            temp = this.tail;
+            for (int i = this.length - 1; i > index; i--) {
+                temp = temp.prev;
+            }
+        }
+        return temp;
+    }
+
     public int getLength() {
         return this.length;
     }
