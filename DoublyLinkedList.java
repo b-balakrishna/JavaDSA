@@ -99,6 +99,7 @@ public class DoublyLinkedList {
         rmNode.prev = null;
         before.next = after;
         after.prev = before;
+        this.length--;
         return rmNode;
 
     }
