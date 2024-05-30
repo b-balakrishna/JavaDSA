@@ -85,6 +85,24 @@ public class DoublyLinkedList {
         return false;
     }
 
+    public Node remove(int index) {
+        if (index == 0)
+            return removeFirst();
+        else if (index == this.length - 1)
+            return removeLast();
+        Node rmNode = this.get(index);
+        if (rmNode == null)
+            return null;
+        Node before = rmNode.prev;
+        Node after = rmNode.next;
+        rmNode.next = null;
+        rmNode.prev = null;
+        before.next = after;
+        after.prev = before;
+        return rmNode;
+
+    }
+
     public Node removeFirst() {
         if (this.length == 0) {
             return null;
