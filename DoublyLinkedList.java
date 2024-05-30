@@ -63,6 +63,28 @@ public class DoublyLinkedList {
         this.length++;
     }
 
+    public boolean insert(int index, int value) {
+        if (this.length == 0) {
+            this.prepend(value);
+            return true;
+        } else if (index == this.length) {
+            this.append(value);
+            return true;
+        }
+        Node nextNode = this.get(index);
+        if (nextNode != null) {
+            Node newNode = new Node(value);
+            Node prevNode = nextNode.prev;
+            prevNode.next = newNode;
+            newNode.prev = prevNode;
+            newNode.next = nextNode;
+            nextNode.prev = newNode;
+            this.length++;
+            return true;
+        }
+        return false;
+    }
+
     public Node removeFirst() {
         if (this.length == 0) {
             return null;
