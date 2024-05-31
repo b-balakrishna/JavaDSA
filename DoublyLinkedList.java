@@ -64,7 +64,10 @@ public class DoublyLinkedList {
     }
 
     public boolean insert(int index, int value) {
-        if (this.length == 0) {
+        if (index < 0 || index > this.length) {
+            return false;
+        }
+        if (index == 0) {
             this.prepend(value);
             return true;
         } else if (index == this.length) {
@@ -101,7 +104,6 @@ public class DoublyLinkedList {
         after.prev = before;
         this.length--;
         return rmNode;
-
     }
 
     public Node removeFirst() {
