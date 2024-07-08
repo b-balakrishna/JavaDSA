@@ -253,4 +253,22 @@ public class SinglyLinkedList {
         return decimal;
     }
 
+    public void reverseBetween(int m, int n) {
+        Node temp = this.head;
+        Node prev = null;
+        Node current = null;
+        Node next = null;
+        int index = 0;
+        while (temp != null && index < n + 1) {
+            if (index == m - 1) {
+                prev = temp;
+            } else if (index == m) {
+                current = temp;
+                
+            }else if()
+
+            temp = temp.next;
+        }
+    }
+
 }
